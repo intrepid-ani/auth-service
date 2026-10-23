@@ -1,0 +1,50 @@
+
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+coverage/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Package manager files
+# package-lock.json
+# pnpm-lock.yaml
+yarn.lock
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Generated files
+generated/
+.prisma/
+*.min.js
+*.min.css
+
+# Cache
+.cache/
+.parcel-cache/
+.eslintcache
+
+# Version control
+.git/
+.github/
+
+# IDE and editor files
+.vscode/
+.idea/
+
+# Documentation and generated assets
+public/assets/
+uploads/
+
+# OS files
+.DS_Store
+Thumbs.db
