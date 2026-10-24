@@ -1,20 +1,23 @@
 import js from "@eslint/js";
-import { defineConfig } from "eslint/config";
+import { defineConfig, globalIgnores } from "eslint/config";
 import tseslint from "typescript-eslint";
 
-export default defineConfig({
-    files: ["**/*.{js,ts}"],
-    extends: [
-        tseslint.configs.strictTypeChecked,
-        tseslint.configs.stylisticTypeChecked,
-    ],
-    languageOptions: {
-        parserOptions: {
-            projectService: true,
+export default defineConfig(
+    globalIgnores(["dist/**", "node_modules/**", ".env"]),
+    {
+        files: ["**/*.ts"],
+        extends: [
+            js.configs.recommended,
+            tseslint.configs.strictTypeChecked,
+            tseslint.configs.stylisticTypeChecked,
+        ],
+        languageOptions: {
+            parserOptions: {
+                projectService: true,
+            },
         },
-    },
-    rules: {
-        "@typescript-eslint/no-floating-promises": "error",
-    },
-    ignores: ["dist/*", ".env", "node_modules/*"],
-});
+        rules: {
+            "@typescript-eslint/no-floating-promises": "error",
+        },
+    }
+);
