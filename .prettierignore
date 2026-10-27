@@ -51,3 +51,6 @@ Thumbs.db
 
 # text file
 *.txt
+
+# dockerignore
+.dockerignore
