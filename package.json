@@ -13,12 +13,14 @@
         "lint:check": "eslint .",
         "lint:fix": "eslint . --fix",
         "prepare": "husky",
-        "test": "jest --watch --BanInBand"
+        "test": "jest",
+        "test:watch": "jest --watch --runInBand"
     },
     "author": "ani <intrepidani5104@gmail.com>",
     "license": "ISC",
     "devDependencies": {
         "@eslint/js": "^10.0.1",
+        "@jest/globals": "^30.5.2",
         "@types/express": "^5.0.6",
         "@types/http-errors": "^2.0.5",
         "@types/jest": "^30.0.0",

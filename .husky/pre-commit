@@ -1,2 +1,3 @@
+pnpm jest
 pnpm lint:fix
 pnpm format:fix
