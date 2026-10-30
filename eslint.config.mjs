@@ -19,15 +19,5 @@ export default defineConfig(
         rules: {
             "@typescript-eslint/no-floating-promises": "error",
         },
-    },
-    {
-        languageOptions: {
-            parserOptions: {
-                projectService: {
-                    allowDefaultProject: ["tests/*.spec.ts"],
-                },
-                tsconfigRootDir: import.meta.dirname,
-            },
-        },
     }
 );
