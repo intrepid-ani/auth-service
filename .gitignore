@@ -34,3 +34,6 @@ Thumbs.db
 
 # logger 
 logger-output/
+
+# editor settings 
+.vscode/

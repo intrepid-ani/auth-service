@@ -14,10 +14,14 @@ export default defineConfig(
         languageOptions: {
             parserOptions: {
                 projectService: true,
+                tsconfigRootDir: import.meta.dirname,
             },
         },
         rules: {
-            "@typescript-eslint/no-floating-promises": "error",
+            "no-console": "error",
+            "dot-notation": "error",
+            "@typescript-eslint/require-await": "off",
+            "@typescript-eslint/no-unsafe-assignment": "off",
         },
     }
 );
