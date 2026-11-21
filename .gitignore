@@ -37,3 +37,9 @@ logger-output/
 
 # editor settings 
 .vscode/
+
+build/
+tmp/
+temp/build/
+tmp/
+temp/

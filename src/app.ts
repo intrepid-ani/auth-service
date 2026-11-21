@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import express from "express";
 import type { Response, Request, NextFunction } from "express";
 import { HttpError } from "http-errors";
