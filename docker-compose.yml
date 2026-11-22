@@ -1,0 +1,18 @@
+services:
+    postgres:
+        image: postgres:16-alpine
+        container_name: auth-database
+        restart: unless-stopped
+        stdin_open: true
+        tty: true
+        environment:
+            POSTGRES_USER: root
+            POSTGRES_PASSWORD: password
+            POSTGRES_DB: auth_local_database
+        ports:
+            - "5432:5432"
+        volumes:
+            - auth-database:/var/lib/postgresql/data
+
+volumes:
+    auth-database:

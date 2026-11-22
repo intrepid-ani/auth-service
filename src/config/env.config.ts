@@ -29,4 +29,12 @@ function confirmENV(name: string) {
 
 export const env = Object.freeze({
     PORT: confirmENV("PORT"),
+    NODE_ENV,
+
+    // database
+    DB_HOST: confirmENV("DB_HOST"),
+    DB_USERNAME: confirmENV("DB_USERNAME"),
+    DB_PASSWORD: confirmENV("DB_PASSWORD"),
+    DB_NAME: confirmENV("DB_NAME"),
+    DB_PORT: confirmENV("DB_PORT"),
 });

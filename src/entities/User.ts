@@ -1,18 +1,27 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { userRoles } from "../constants";
 
 @Entity()
 export class User {
-
     @PrimaryGeneratedColumn()
-    id: number
+    id: number;
 
     @Column()
-    firstName: string
+    firstname: string;
 
     @Column()
-    lastName: string
+    lastname: string;
 
     @Column()
-    age: number
+    email: string;
 
+    @Column()
+    password: string;
+
+    @Column({
+        type: "enum",
+        enum: Object.values(userRoles),
+        default: userRoles.CUSTOMER,
+    })
+    role: string;
 }
