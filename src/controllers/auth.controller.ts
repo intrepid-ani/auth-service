@@ -1,8 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { NextFunction, Request, Response } from "express";
+import { NextFunction, Response } from "express";
 import { UserService } from "../services/user.service";
 import { RequestUserData } from "../types";
-import createHttpError from "http-errors";
 
 export class AuthControllers {
     constructor(private userService: UserService) {}
@@ -23,8 +21,7 @@ export class AuthControllers {
                 message: "User registered successfully!",
             });
         } catch (err) {
-            const error = createHttpError(501, "User registerion failed");
-            next(error);
+            next(err);
         }
     }
 }
