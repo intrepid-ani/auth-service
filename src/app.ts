@@ -1,8 +1,8 @@
 import "reflect-metadata";
 import express from "express";
-import type { Response, Request, NextFunction } from "express";
-import { HttpError } from "http-errors";
+import type { Response } from "express";
 import { authRoutes } from "./routes/auth.route";
+import { errorHandler } from "./middlewares/errorHander.middleware";
 
 export const app = express();
 
@@ -18,9 +18,4 @@ app.all(["/", "/health"], (_, res: Response) => {
 app.use("/auth/api/v0/", authRoutes);
 
 // Global Error handling file
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-app.use((err: HttpError, req: Request, res: Response, next: NextFunction) => {
-    // eslint-disable-next-line no-console
-    // console.log(err, req, res);
-    res.status(err.status).json({ message: err.message, err: err.expose });
-});
+app.use(errorHandler);
