@@ -9,3 +9,12 @@ export interface Userdata {
 export interface RequestUserData extends Request {
     body: Userdata;
 }
+
+export interface LoginData {
+    email: string;
+    password: string;
+}
+
+export interface RequestLoginData extends Request {
+    body: LoginData;
+}

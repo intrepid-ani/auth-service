@@ -36,7 +36,7 @@ export class TokenService {
         return refreshToken;
     }
 
-    async createRefresh(): Promise<RefreshToken> {
-        return this.refreshTokenRepository.save({});
+    async createRefresh(userId: string): Promise<RefreshToken> {
+        return this.refreshTokenRepository.save({ userId });
     }
 }

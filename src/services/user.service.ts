@@ -36,11 +36,11 @@ export class UserService {
             return user;
         } catch (err) {
             let error = err;
-            if (!isHttpError(err) && err instanceof Error) {
-                const errMsg: string =
-                    "message" in err ?
+            if (!isHttpError(err)) {
+                const errMsg =
+                    err instanceof Error ?
                         err.message
-                    :   "Unkown error while register user";
+                    :   "Unknown error while registering user";
                 error = createHttpError(503, errMsg, {
                     name: "REGISTER_USER_FAILED",
                     path: "",
@@ -49,6 +49,38 @@ export class UserService {
             }
 
             throw error;
+        }
+    }
+
+    async findById(id: string) {
+        try {
+            return await this.UserRepository.findBy({ id });
+        } catch (err) {
+            const errMsg =
+                err instanceof Error ?
+                    err.message
+                :   "Unknown error while finding user";
+            throw createHttpError(503, errMsg, {
+                name: "CAN_NOT_FIND_USER",
+                path: "",
+                location: "",
+            });
+        }
+    }
+
+    async findByEmail(email: string) {
+        try {
+            return await this.UserRepository.findBy({ email });
+        } catch (err) {
+            const errMsg =
+                err instanceof Error ?
+                    err.message
+                :   "Unknown error while finding user";
+            throw createHttpError(503, errMsg, {
+                name: "CAN_NOT_FIND_USER",
+                path: "",
+                location: "",
+            });
         }
     }
 }

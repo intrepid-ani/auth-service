@@ -4,7 +4,10 @@ import {
     PrimaryGeneratedColumn,
     CreateDateColumn,
     UpdateDateColumn,
+    ManyToOne,
+    JoinColumn,
 } from "typeorm";
+import { User } from "./User";
 
 @Entity()
 export class RefreshToken {
@@ -18,8 +21,18 @@ export class RefreshToken {
     createdAt: Date;
 
     @Column({
-        type: "timestamp",
-        default: () => "NOW() + INTERVAL '7 days'",
+        type: "timestamptz",
+        default: () => "CURRENT_TIMESTAMP + INTERVAL '7 days'",
     })
     expiresAt: Date;
+
+    @Column({ type: "uuid" })
+    userId: string;
+
+    @ManyToOne(() => User, {
+        nullable: false,
+        onDelete: "CASCADE",
+    })
+    @JoinColumn({ name: "userId" })
+    user: User;
 }
