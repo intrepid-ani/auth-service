@@ -43,3 +43,7 @@ tmp/
 temp/build/
 tmp/
 temp/
+
+# keys 
+certs
+certs/*

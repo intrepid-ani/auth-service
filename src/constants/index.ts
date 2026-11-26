@@ -7,3 +7,5 @@ export const userRoles: {
     ADMIN: "admin",
     MANAGER: "manager",
 });
+
+export const DayInMiliSec = 1000 * 60 * 60 * 24;

@@ -9,7 +9,6 @@ export function errorHandler(
     err: HttpError | Error,
     req: Request,
     res: Response,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     _: NextFunction
 ) {
     const errorId = randomUUID();
@@ -40,7 +39,9 @@ export function errorHandler(
             isServerCrisis ?
                 "Internal server error. Please try again later."
             :   err.message,
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         path: (err as any).path,
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         location: (err as any).location,
         ...(process.env.NODE_ENV === "development" && isServerCrisis ?
             { stack: err.stack }

@@ -1,8 +1,14 @@
-import { env } from "./config/env.config.ts";
-import { app } from "./app.ts";
+import { env } from "./config/env.config";
+import { app } from "./app";
+import { logger } from "./config/logger/logger.config";
 
 const port = env.PORT || 3000;
 
 app.listen(port, () => {
-    console.log("Auth server up and listening on port", port);
+    try {
+        logger.info("Server is running successfully");
+    } catch (_err) {
+        // eslint-disable-next-line no-console
+        console.log("Unknown error while logging");
+    }
 });
