@@ -15,13 +15,7 @@ import { User } from "../../src/entities/User";
 import { userRoles } from "../../src/constants";
 import { RefreshToken } from "../../src/entities/RefreshToken";
 import { JwtPayload, verify } from "jsonwebtoken";
-
-interface ValidationErrorItem {
-    path: string;
-    msg: string;
-    location?: string;
-    type?: string;
-}
+import { ValidationErrorItem } from "../types";
 
 // constants
 const bcryptRegex = /^\$2[aby]\$(0[4-9]|[12][0-9]|3[01])\$[./A-Za-z0-9]{53}$/;
@@ -29,6 +23,8 @@ const bcryptRegex = /^\$2[aby]\$(0[4-9]|[12][0-9]|3[01])\$[./A-Za-z0-9]{53}$/;
 let connection: DataSource;
 beforeAll(async () => {
     connection = await AppDataSource.initialize();
+    await connection.synchronize();
+    await truncateAllEntities(connection);
 });
 
 beforeEach(async () => {

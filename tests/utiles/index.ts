@@ -1,10 +1,21 @@
 import { DataSource } from "typeorm";
 
-export async function truncateAllEntities(connection: DataSource) {
-    const entities = connection.entityMetadatas;
+export async function truncateAllEntities(
+    connection: DataSource
+): Promise<void> {
+    const tables = connection.entityMetadatas
+        .filter(entity => entity.tableType !== "view")
+        .map(entity =>
+            connection
+                .getRepository(entity.target)
+                .metadata.tablePath.split(".")
+                .map(part => `"${part.replace(/"/g, '""')}"`)
+                .join(".")
+        );
 
-    for (const entity of entities) {
-        const repo = connection.getRepository(entity.name);
-        await repo.clear();
-    }
+    if (tables.length === 0) return;
+
+    await connection.query(
+        `TRUNCATE TABLE ${tables.join(", ")} RESTART IDENTITY CASCADE`
+    );
 }
